@@ -325,7 +325,10 @@ section
 /*********************************
 3. Header
 *********************************/
-
+#widget {
+	background-image: url("../images/card_1.jpg");
+	background-repeat: no-repeat;
+}
 .header
 {
 	position: fixed;
