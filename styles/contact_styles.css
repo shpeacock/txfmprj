@@ -775,6 +775,7 @@ section
 
 .dlevels{
 	margin-top: 3rem;
+	margin-bottom:3rem;
 }
 /*********************************
 7. Contact Content
@@ -809,7 +810,7 @@ section
 	left: 0;
 	width: 43px;
 	height: 2px;
-	background: #ff4200;
+	background: #0C78A6;
 	content: '';
 }
 
@@ -873,14 +874,14 @@ section
 	position: relative;
 	width: 153px;
     height: 66px;
-    background: #ff4200;
+    background: #0C78A6;
     overflow: hidden;
     border: none;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.6em;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: ivory;
     cursor: pointer;
     margin-top: 39px;
 }
