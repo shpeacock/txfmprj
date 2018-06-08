@@ -425,7 +425,7 @@ section
 }
 .nav_items li.active
 {
-	background: #ff4200;
+	background: #D6201D;
 }
 .nav_items li.active a
 {
@@ -433,11 +433,11 @@ section
 }
 .nav_items li:hover
 {
-	background: #ff4200;
+	background: #D6201D;
 }
 .nav_items li:hover a
 {
-	color: #FFFFFF;
+	color: #D6201D;
 }
 
 /*********************************
