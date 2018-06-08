@@ -677,7 +677,7 @@ section
 }
 
 .button {
-    
+  background-color: #0C78A6;
 }
 /*********************************
 5. Section Title
@@ -811,6 +811,7 @@ section
 .elements_buttons_container
 {
 	margin-top: 66px;
+
 }
 .border_button
 {
