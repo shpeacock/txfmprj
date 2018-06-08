@@ -130,14 +130,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -238,7 +238,7 @@ section
 	line-height: 66px;
 	text-transform: uppercase;
 	letter-spacing: 6.7px;
-	
+
 }
 .button a img
 {
@@ -302,6 +302,7 @@ section
 	padding-right: 48px;
 	z-index: 20;
 	background: #FFFFFF;
+	opacity: 0.55;
 	-webkit-transition: all 300ms ease;
 	-moz-transition: all 300ms ease;
 	-ms-transition: all 300ms ease;
@@ -384,7 +385,7 @@ section
 }
 .nav_items li.active
 {
-	background: #ff4200;
+	background: #D6201D;
 }
 .nav_items li.active a
 {
@@ -392,7 +393,7 @@ section
 }
 .nav_items li:hover
 {
-	background: #ff4200;
+	background: #D6201D;
 }
 .nav_items li:hover a
 {
@@ -644,7 +645,7 @@ section
 	right: 0px;
 	width: auto;
 	height: 74px;
-	background: #ff4200;
+	background: #D6201D;
 	z-index: 11;
 	padding-right: 38px;
 	padding-left: 45px;
@@ -769,8 +770,12 @@ section
 	letter-spacing: 1em;
 	text-transform: uppercase;
 	padding-left: 3px;
+	text-align: center;
 }
 
+.dlevels{
+	margin-top: 3rem;
+}
 /*********************************
 7. Contact Content
 *********************************/
@@ -926,15 +931,15 @@ section
 	font-style: italic !important;
 	color: #6e6e6e !important;
 }
-::-moz-placeholder /* Firefox 19+ */ 
+::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
 	font-style: italic !important;
 	color: #6e6e6e !important;
-} 
+}
 :-ms-input-placeholder
-{ 
+{
 	font-size: 12px !important;
 	font-weight: 400 !important;
 	font-style: italic !important;
@@ -969,7 +974,7 @@ section
 	width: 100%;
 	height: calc(100% + 30px);
 }
-	
+
 
 /*********************************
 10. Contact Sidebar
