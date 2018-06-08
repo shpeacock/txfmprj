@@ -222,7 +222,7 @@ section
 {
 	width: 187px;
 	height: 66px;
-	background: #ff4200;
+	background: #0C78A6;
 	overflow: hidden;
 }
 .line_button
@@ -343,6 +343,9 @@ section
 	color: #ff4200;
 }
 
+.endorseform {
+	display: none;
+}
 /*********************************
 3.2 Main Navigation
 *********************************/
@@ -676,9 +679,6 @@ section
     text-align: center;
 }
 
-.button {
-  background-color: #0C78A6;
-}
 /*********************************
 5. Section Title
 *********************************/
