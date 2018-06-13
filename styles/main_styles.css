@@ -948,7 +948,7 @@ section
 	-o-transform: translateX(-50%);
 	transform: translateX(calc(-50% - 4px));
 	width: 2px;
-	height: 45px;
+	height: 40px;
 	content: '';
 	background: #FFFFFF;
 }
@@ -959,7 +959,7 @@ section
 .about_text p
 {
 	color: #FFFFFF;
-	margin-bottom: 0px;
+	margin-bottom: -10px;
 }
 .about_text img
 {
