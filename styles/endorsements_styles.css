@@ -112,8 +112,8 @@ p a:hover::after
 }
 ::selection
 {
-	background: #fde0db;
-	color: #ff4200;
+	background: #839dc6; 
+		color: #ff4200;
 }
 p::selection
 {

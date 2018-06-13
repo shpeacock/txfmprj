@@ -124,12 +124,12 @@ p a:hover::after
 }
 ::selection
 {
-	background: #fde0db;
+	background: #839dc6;
 	color: #ff4200;
 }
 p::selection
 {
-	background: #fde0db;
+	background: #839dc6;
 }
 h1{font-size: 48px;}
 h2{font-size: 30px;}
@@ -143,14 +143,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -251,7 +251,7 @@ section
 	line-height: 66px;
 	text-transform: uppercase;
 	letter-spacing: 6.7px;
-	
+
 }
 .button a img
 {
@@ -1120,7 +1120,7 @@ section
 {
 	left: calc(100% + 70px);
 }
-	
+
 
 /*********************************
 11. Blog Sidebar
@@ -1166,15 +1166,15 @@ section
 	font-style: italic !important;
 	color: #6e6e6e !important;
 }
-::-moz-placeholder /* Firefox 19+ */ 
+::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 12px !important;
 	font-weight: 400 !important;
 	font-style: italic !important;
 	color: #6e6e6e !important;
-} 
+}
 :-ms-input-placeholder
-{ 
+{
 	font-size: 12px !important;
 	font-weight: 400 !important;
 	font-style: italic !important;

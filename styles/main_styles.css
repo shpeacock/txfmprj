@@ -125,12 +125,12 @@ p a:hover::after
 }
 ::selection
 {
-	background: #fde0db;
+	background: #4286f4;
 	color: #ff4200;
 }
 p::selection
 {
-	background: #fde0db;
+	background: #4286f4;
 }
 h1{font-size: 72px;}
 h2{font-size: 30px;}
@@ -919,6 +919,7 @@ section
 	color: #FFFFFF;
 	line-height: 1.35;
 	margin-bottom: 116px;
+	font-family: 'Myriad Pro Regular', sans-serif;
 }
 .section_title h2 span
 {
@@ -926,6 +927,7 @@ section
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	font-family: 'Myriad Pro Regular', sans-serif ;
 	-webkit-transform: translate(-50%, -50px);
 	-moz-transform: translate(-50%, -50px);
 	-ms-transform: translate(-50%, -50px);
@@ -959,7 +961,7 @@ section
 .about_text p
 {
 	color: #FFFFFF;
-	margin-bottom: -10px;
+	margin-bottom: -100px;
 }
 .about_text img
 {
