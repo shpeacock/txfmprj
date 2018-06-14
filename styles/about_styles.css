@@ -2,23 +2,15 @@
 /* CSS Document */
 
 /******************************
-
 COLOR PALETTE
-
-
-
-
 [Table of Contents]
-
 1. Fonts
 2. Body and some general stuff
 3. Header
 
 
 
-******************************/
-
-/***********
+******************************//***********
 1. Fonts
 ***********/
 
@@ -777,6 +769,7 @@ section
 	font-weight: 300;
 	color: #FFFFFF;
 	margin-bottom: 2px;
+	font-family: 'Myriad Pro Regular', sans-serif ;
 }
 .home_content span
 {
