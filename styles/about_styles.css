@@ -994,6 +994,7 @@ section
 .footer
 {
 	background: #111111;
+	width: max-content; 
 }
 .footer_content
 {
