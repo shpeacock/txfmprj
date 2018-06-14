@@ -758,9 +758,10 @@ section
 }
 .home_content h1
 {
-	font-weight: 300;
+	font-weight: 800;
 	color: #FFFFFF;
 	margin-bottom: 2px;
+	font-family: 'Myriad Pro Regular', sans-serif;
 }
 .home_content span
 {

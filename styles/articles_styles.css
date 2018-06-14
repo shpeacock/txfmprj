@@ -114,7 +114,7 @@ p a:active
 p a:hover
 {
 	color: #FFFFFF;
-	background: #ffa07f;
+	background: #D6201D;
 }
 p a:hover::after
 {
@@ -433,7 +433,7 @@ section
 }
 .nav_items li:hover
 {
-	background: #D6201D;
+	background: ivory;
 }
 .nav_items li:hover a
 {
@@ -685,7 +685,7 @@ section
 	right: 0px;
 	width: auto;
 	height: 74px;
-	background: #ff4200;
+	background: #D6201D;
 	z-index: 11;
 	padding-right: 38px;
 	padding-left: 45px;
@@ -995,7 +995,7 @@ section
 }
 .blog_nav ul li:hover
 {
-	background: #ff4200;
+	background: ivory;
 }
 
 /*********************************
