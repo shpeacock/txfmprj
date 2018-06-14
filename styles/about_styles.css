@@ -93,12 +93,12 @@ p a:hover::after
 }
 ::selection
 {
-	background: #839dc6;
-	color: #ff4200;
+	background: #4286f4;
+	color: ivory;
 }
 p::selection
 {
-	background: #839dc6
+	background: #4286f4;
 	;
 }
 h1{font-size: 48px;}
@@ -126,7 +126,7 @@ h6::selection
 {
 	font-size: 16px !important;
 	font-weight: 500;
-	color: #777777 !important;
+	color: ivory !important;
 }
 :-moz-placeholder /* older Firefox*/
 {
@@ -343,7 +343,7 @@ section
 	position: absolute;
 	top: 0;
 	left: -5px;
-	color: #ff4200;
+	color: #4286f4;
 	z-index: -1;
 }
 .logo span:last-of-type
@@ -994,7 +994,6 @@ section
 .footer
 {
 	background: #111111;
-	width: max-content; 
 }
 .footer_content
 {

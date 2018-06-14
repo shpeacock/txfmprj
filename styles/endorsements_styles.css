@@ -46,7 +46,7 @@
 }
 body
 {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Myriad Pro Regular';
 	font-size: 15px;
 	line-height: 2;
 	font-weight: 400;
@@ -68,7 +68,7 @@ ul
 }
 p
 {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Myriad Pro Regular';
 	font-size: 15px;
 	line-height: 2;
 	font-weight: 400;
@@ -113,7 +113,7 @@ p a:hover::after
 ::selection
 {
 	background: #839dc6;
-		color: #ff4200;
+		color: ivory;
 }
 p::selection
 {
@@ -335,12 +335,12 @@ section
 	position: absolute;
 	top: 0;
 	left: -5px;
-	color: #ff4200;
+	color: ivory;
 	z-index: -1;
 }
 .logo span:last-of-type
 {
-	color: #ff4200;
+	color: ivory;
 }
 
 .endorseform {
@@ -763,7 +763,11 @@ section
 .home_content
 {
 	margin-top: 40px;
+	background-color: #4286f4 ;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
 }
+
 .home_content h1
 {
 	font-weight: 300;
@@ -816,15 +820,15 @@ section
 .border_button
 {
 	background: transparent;
-	border: solid 2px #ff4200;
+	border: solid 2px ivory;
 }
 .border_button a
 {
-	color: #ff4200;
+	color: ivory;
 }
 .border_button a svg
 {
-	fill: #ff4200;
+	fill: ivory;
 }
 .border_button a::after
 {
@@ -934,9 +938,9 @@ section
 	width: 62px;
 	height: 100%;
 	content: '+';
-	border: solid 2px #ff4200;
+	border: solid 2px ivory;
 	font-size: 18px;
-	color: #ff4200;
+	color: ivory;
 	font-weight: 600;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -950,7 +954,7 @@ section
 }
 .accordion:hover::after
 {
-	background: #ff4200;
+	background: ivory;
 	color: #FFFFFF;
 }
 .accordion_panel
@@ -1033,7 +1037,7 @@ section
 	left: 0;
 	width: 39px;
 	height: 2px;
-	background: #ff4200;
+	background: ivory;
 	content: '';
 }
 .milestone_text

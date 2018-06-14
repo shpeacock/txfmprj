@@ -111,8 +111,8 @@ p a:hover::after
 }
 ::selection
 {
-	background: #839dc6;
-	color: #ff4200;
+	background: #4286f4;
+	color: ivory;
 }
 p::selection
 {
@@ -221,7 +221,7 @@ section
 {
 	width: 187px;
 	height: 66px;
-	background: #ff4200;
+	background: ivory;
 	overflow: hidden;
 }
 .line_button
@@ -335,12 +335,12 @@ section
 	position: absolute;
 	top: 0;
 	left: -5px;
-	color: #ff4200;
+	color: ivory;
 	z-index: -1;
 }
 .logo span:last-of-type
 {
-	color: #ff4200;
+	color: ivory;
 }
 
 /*********************************
@@ -581,7 +581,7 @@ section
 	position: absolute;
 	top: -1px;
 	left: -5px;
-	color: #ff4200;
+	color: ivory;
 	z-index: -1;
 }
 .fs_menu_list li a > span::after
@@ -833,7 +833,7 @@ section
 .input_field:focus,
 .text_field:focus
 {
-	border: solid 2px #ff4200 !important;
+	border: solid 2px ivory !important;
 	box-shadow: none !important;
 	outline: none !important;
 }
@@ -1016,7 +1016,7 @@ section
 	left: 0;
 	width: 43px;
 	height: 2px;
-	background: #ff4200;
+	background: ivory;
 	content: '';
 }
 
@@ -1051,7 +1051,7 @@ section
 	left: 0;
 	width: 9px;
 	height: 9px;
-	background: #ff4200;
+	background: ivory;
 	content: '';
 }
 
