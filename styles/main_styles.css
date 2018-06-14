@@ -275,10 +275,11 @@ section
 	color: #FFFFFF;
 	font-size: 11px;
 	font-weight: 300;
-	line-height: 66px;
+	line-height: 60px;
 	text-transform: uppercase;
 	letter-spacing: 6.7px;
-
+	border: 2px ivory solid;
+  border-radius: 5px;
 }
 .button a img
 {
