@@ -122,12 +122,12 @@ p a:hover::after
 }
 ::selection
 {
-	background: #839dc6;
-	color: #ff4200;
+	background: #4286f4;
+	color: ivory;
 }
 p::selection
 {
-	background: #839dc6;
+	background: #4286f4;
 }
 h1{font-size: 48px;}
 h2{font-size: 30px;}
@@ -433,11 +433,11 @@ section
 }
 .nav_items li:hover
 {
-	background: ivory;
+	background: #D6201D;
 }
 .nav_items li:hover a
 {
-	color: #D6201D;
+	color: ivory;
 }
 
 /*********************************
