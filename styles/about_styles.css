@@ -25,6 +25,10 @@ COLOR PALETTE
 	margin: 0;
 	padding: 0;
 }
+
+#purpose{
+	padding-top: 90px;
+}
 body
 {
 	font-family: 'Open Sans', sans-serif;
