@@ -43,7 +43,7 @@ COLOR PALETTE
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400,600,700,800');
 @font-face
 {
-	font-family: 'Myriad Pro Regular';
+	font-family: 'Open Sans', sans-serif;
 	src: url('../fonts/myriad-pro-regular.ttf')  format('truetype'),
 		 url('../fonts/myriad-pro-regular.otf')  format('opentype');
 }
@@ -95,7 +95,7 @@ p a
 	display: inline;
 	position: relative;
 	color: inherit;
-	border-bottom: solid 1px #ffa07f;
+	border-bottom: solid 1px #4286f4;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -116,8 +116,7 @@ p a:active
 }
 p a:hover
 {
-	color: #FFFFFF;
-	background: #ffa07f;
+	color: #4286f4;
 }
 p a:hover::after
 {
@@ -1117,57 +1116,10 @@ section
 	width: 94px;
 	height: 94px;
 }
-
-/*********************************
-8.1 Testimonials Navigation
-*********************************/
-
-.test_slider_nav
-{
-	position: absolute;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
-	width: 48px;
-	height: 48px;
-	cursor: pointer;
-	z-index: 10;
-}
-.test_slider_nav:hover
-{
-	background: #ivory;
-}
-.test_slider_nav:hover i
-{
-	color: #FFFFFF;
-}
-.test_slider_nav i
-{
-	font-size: 18px;
-	color: #ivory;
-}
-.test_slider_nav_left
-{
-	left: -48px;
-}
-.test_slider_nav_right
-{
-	right: -48px;
-}
-
-/*********************************
-9. Services
-*********************************/
-
 .services
 {
-	padding-top: 152px;
+	padding-top: 120px;
 	padding-bottom: 120px;
-	z-index: 1;
-	margin-top: -32px;
 }
 .services_background
 {
@@ -1180,26 +1132,22 @@ section
 	background-size: cover;
 	background-position: center center;
 }
-.services_shapes
-{
-	position: absolute;
-	top: 116px;
-	right: 0;
-}
+
 .service_item
 {
 	margin-bottom: 30px;
 }
 .service_item h3
 {
-	color: #FFFFFF;
+	color: #1c1c1c;
+	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 0.2em;
 	margin-bottom: 31px;
 }
 .service_item p
 {
-	color: #FFFFFF;
+	color: #6e6e6e;
 	max-width: 100%;
 }
 .icon_container
@@ -1215,51 +1163,6 @@ section
 	margin-right: auto;
 }
 
-/*********************************
-10. Clients
-*********************************/
-
-.clients
-{
-	padding-top: 192px;
-	padding-bottom: 110px;
-}
-
-/*********************************
-10.1 Clients Slider
-*********************************/
-
-.clients_slider
-{
-	margin-top: 87px;
-	cursor: pointer;
-}
-.clients_item
-{
-
-}
-.clients_item img
-{
-	margin: 0 auto;
-	-webkit-filter: opacity(50%) grayscale(100%);
-	-ms-filter: opacity(30%), grayscale(100%);
-	-moz-filter: opacity(30%) grayscale(100%);
-	filter: opacity(30%) grayscale(100%);
-	-webkit-transition: all 300ms ease;
-	-moz-transition: all 300ms ease;
-	-ms-transition: all 300ms ease;
-	-o-transition: all 300ms ease;
-	transition: all 300ms ease;
-}
-.clients_item:hover img
-{
-	-webkit-filter: opacity(100%) grayscale(0%);
-	filter: opacity(100%) grayscale(0%);
-}
-.owl-carousel .owl-item img
-{
-	width: auto !important;
-}
 
 /*********************************
 11. Contact
