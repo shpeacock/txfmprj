@@ -733,7 +733,7 @@ section
 .home
 {
 	width: 100%;
-	height: 386px;
+	height: -webkit-fill-available;
 	margin-top: 110px;
 }
 .home_background
