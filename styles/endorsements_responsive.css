@@ -310,7 +310,7 @@
 	}
 	.home
 	{
-		height: 266px;
+		height: -webkit-fill-available;
 	}
 	.home_content
 	{
