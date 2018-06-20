@@ -680,7 +680,7 @@ section
 .home_social_container
 {
 	position: absolute;
-	top: 110px;
+	top: 80px;
 	right: 0px;
 	width: auto;
 	height: 74px;
@@ -766,7 +766,7 @@ section
 {
 	width: 100%;
 	height: 386px;
-	margin-top: 110px;
+	margin-top: 80px;
 }
 .home_background
 {
