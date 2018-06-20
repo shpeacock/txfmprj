@@ -1,3 +1,6 @@
+
+
+
 @charset "utf-8";
 /* CSS Document */
 
@@ -252,6 +255,10 @@ section
 .fill_height
 {
 	height: 100%;
+}
+.btn-primary {
+	display: flex;
+
 }
 .super_container
 {
