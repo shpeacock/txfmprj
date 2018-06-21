@@ -203,25 +203,505 @@
 		<div class="row">
 			<div class = "col-lg-4">
 			</div>
-					<div class="col-lg-4">
+					<div class="col-lg-4" style= "background-color: white; ">
 						<div class="contact_main_content">
 							<div class="contact_subtitle" style = "color:ivory;">contact us</div>
 							<!-- Contact Us Form -->
 							<div class="contact_form_container">
-								<form id="reply_form" action="post">
-									<div>
-										<input id="contact_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
-										<input id="contact_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
-										<input id="contact_form_subject" class="input_field contact_form_subject" type="text" placeholder="Subject" required="required" data-error="Subject is required.">
-										<textarea id="contact_form_message" class="text_field contact_form_message" name="message" placeholder="Message" rows="4" required="" data-error="Please, write us a message."></textarea>
-									</div>
-									<div>
-										<button id="contact_form_submit" type="submit" class="contact_submit_btn trans_300" value="Submit">
-											send<img src="images/arrow_right.svg" alt="">
-										</button>
-									</div>
-								</form>
-							</div>
+							<form name="pShoppingCartFormBean" style="background-color:white" method="POST" action="/np/publicaccess/subscriptionSubmit.do" onsubmit="return validateFields(this);">
+<script language="JavaScript" src="/np/js/common.js"></script>
+<script language="JavaScript" src="/np/js/popup.js"></script>
+<script language="JavaScript" src="/np/js/objects.js"></script>
+<script language="JavaScript" src="/np/js/calendar.js"></script>
+<script language="JavaScript" src="/np/js/PopupWindow.js"></script>
+<script language="JavaScript" src="/np/js/AnchorPosition.js"></script>
+<script language="JavaScript" src="/np/js/date.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+
+
+<script language="JavaScript">
+function doCancel(){
+   document.location.href='https://www.z2systems.com/np/admin/systemsetting/onlineLinks.jsp';
+}
+function validateFields(form) {
+
+    if(isItemEmpty("alternatePayment", false)) {
+        if (!validateItem("subscriber.email1", "Email", false)) {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    // for DEV-3942 start
+    var payType = document.querySelector('input[name="payment-type"][value="credit-card"]');
+    if (payType && payType.checked || !payType){
+        var alternatePayment3942 = document.querySelector('#alternatePayment');
+        var echeckhidden3942 = document.querySelector('input[name="echeckhidden"]');
+        if ((!alternatePayment3942 || !alternatePayment3942.checked) && (echeckhidden3942 && echeckhidden3942.value != 'echeck')){
+            if(!validateItem("payment.creditCard.cardNumberSecure","Credit card number",false)) return false;
+            if(!validateItem("recurringDonation.creditCard.cardNumberSecure","Credit card number",false)) return false;
+            if(!validateItem("membershipSpec.creditCard.cardNumberSecure","Credit card number",false)) return false;
+        }
+    }
+    // for DEV-3942 end
+
+    //dev-4947
+
+
+    getElement("submitButton").disabled=true;
+   return true;
+}
+
+function validateDateItem(property){
+    var item = document.getElementById(property);
+    var date=trim(item.value);
+    if(date==""){
+        return true;
+    }
+    var reg="MM/dd/yyyy";
+    reg=reg.replace(/MM/,"((0[1-9])|1[0-2])");
+    reg=reg.replace(/dd/,"((0[1-9])|([1-2][0-9])|30|31)");
+    reg=reg.replace(/yyyy/,"[0-9]{4}");
+    reg=new RegExp("^"+reg+"$");
+    if(reg.test(date)==false){
+        alert("Date must be in MM/DD/YYYY format");
+        item.focus();
+        return false;
+    }
+    return true;
+}
+function validatePwd(property){
+    var item = getElement(property);
+    if(item != null && ("account.loginPassword" === property || "newPassword" === property)){
+        var loginName = getElement('account.loginName');
+        var retypePwd = getElement("loginPasswordRetype");
+        if("newPassword" === property){
+            loginName = getElement('oldPassword');
+            retypePwd = getElement("newPasswordRetype");
+        }
+        if(loginName != null && trim(loginName.value) != ""){
+            var regexp = /(?=\S*\d)\S{8,}$/;
+            var blankRegexp = /\s/;
+            if(!regexp.test(item.value) || blankRegexp.test(item.value)){
+                alert('Your password requires at least 8 characters, including at least one number. Spaces are not allowed.');
+                return false;
+            }
+            if(item.value != retypePwd.value){
+                alert('The re-typed password doesn\'t match your original password');
+                return false;
+            }
+        }
+    }
+    return true;
+}
+function validateItem(property, name, isMulti) {
+   var item;
+   var isEmpty;
+   if(isMulti){
+      var items = getAllChecked(property);
+      isEmpty = items==null || items.length==0;
+      item = getElement(property);
+   } else {
+      item = getElement(property);
+      isEmpty = item!=null && trim(item.value) == "";
+   }
+   if(isEmpty) {
+      alert(name+" is a required field");
+      if(item!=null)
+         item.focus();
+      return false;
+   }
+   if(item != null && "payment.creditCard.expirationMonth" === property){
+	   var nowYearMonth="201806";
+	   var thisYearMonth = "";
+	   var thisMonth=trim(item.value);
+	   var thisYear= "";
+	   var selectObj = "";
+	   if (getElement("payment.creditCard.expirationYear")) {
+		   selectObj = document.getElementById("payment.creditCard.expirationYear");
+		   thisYear = selectObj.options[selectObj.selectedIndex].text;
+	   }
+	   thisYearMonth = thisYear+thisMonth;
+	   if(thisYearMonth < nowYearMonth){
+		   alert("The Credit Card Expiration date must be a future date.");
+		   item.focus();
+		   return false;
+	   }
+
+   }else if(item != null && "recurringDonation.nextPaymentDate" === property){
+	  var date=trim(item.value);
+	  var reg="MM/dd/yyyy";
+	  reg=reg.replace(/MM/,"((0[1-9])|1[0-2])");
+	  reg=reg.replace(/dd/,"((0[1-9])|([1-2][0-9])|30|31)");
+	  reg=reg.replace(/yyyy/,"[0-9]{4}");
+	  reg=new RegExp("^"+reg+"$");
+	  if(reg.test(date)==false){
+	     alert("Date must be in MM/DD/YYYY format");
+	     item.focus();
+	     return false;
+	  }
+   }else if(item != null && "recurringDonation.amount" === property){
+	  var date=trim(item.value);
+	  var reg="([1-9])(([,\\d]*)|([,\\d]*\.\\d{1,2}))";
+	  reg=new RegExp("^"+reg+"$");
+	  if(reg.test(date)==false){
+	     alert(name + " is invalid");
+	     item.focus();
+	     return false;
+	  }
+   }else if(item != null && ("recurringDonation.creditCard.cvvNumber" === property ||
+   							 "recurringDonation.creditCard.address.zip" === property )){
+	  var date=trim(item.value);
+	  var reg="\\d+";
+	  reg=new RegExp("^"+reg+"$");
+	  if(reg.test(date)==false){
+	     alert(name + " is invalid");
+	     item.focus();
+	     return false;
+	  }
+   // for DEV-3942 start
+   }else if(item != null && ("payment.creditCard.cardNumberSecure" === property ||
+           "membershipSpec.creditCard.cardNumberSecure" === property ||
+           "recurringDonation.creditCard.cardNumberSecure" === property)){
+        var cardNumber = item.value.replace(/\s/g,"");
+       var reg="\\d+";
+       reg=new RegExp("^"+reg+"$");
+
+       if (!reg.test(cardNumber) || cardNumber.length < 12 || cardNumber.length > 19){
+            alert('Your credit card number must consist of numbers and be between 12 and 19 digits.');
+            return false;
+        }
+   }
+   // for DEV-3942 end
+   else if(item !=null && ("attendeeCount" === property)){
+	 	var attendeeNum = item.value.replace(/\s/g,"");
+	 	var reg="\\d{1,3}";
+      reg=new RegExp("^"+reg+"$");
+      if (!reg.test(attendeeNum)){
+        alert('Attendee Count must be less than 1000.');
+       return false;
+      }
+   }
+   //dev-5076
+   else if(item!=null
+       &&("payment.creditCard.cardHolderEmail"===property
+       ||"recurringDonation.creditCard.cardHolderEmail"===property
+       ||"membershipSpec.creditCard.cardHolderEmail"===property)){
+       if(!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(item.value)){
+           alert('Cardholder Email is a required field');
+           return false;
+       }
+   }
+   return true;
+}
+
+function isItemEmpty(property, isMulti) {
+   if(isMulti){
+      var items = getAllChecked(property);
+      return items==null || items.length==0;
+   } else {
+      var item = getElement(property);
+      return item==null || item.value == "";
+   }
+}
+
+
+function checkAddress(){
+	var setShippingDefault = getElement("setDefaultShippingAddress");
+	var shippingDefault = getElement("shipping.address.defaultShippingAddress");
+	if(setShippingDefault.checked == true){
+		shippingDefault.value='1';
+	}else{
+		shippingDefault.value='0';
+	}
+}
+
+function doClean(){
+	  if(document.getElementById("selectShippingFlag")){
+		document.getElementById("selectShippingFlag").value="0";
+	  }
+	  if(document.getElementById("shipping.address.defaultShippingAddress")){
+		   document.getElementById("shipping.address.defaultShippingAddress").value='0';
+	  }
+	  if(document.getElementById("setDefaultShippingAddress")){
+		   document.getElementById("setDefaultShippingAddress").checked=false;
+	  }
+	  jQuery19("input[type=text]",document.cShoppingCartFormBean).each(function(){
+	   jQuery19(this).attr("value",'');
+	  });
+	  jQuery19("input[type=checkbox]",document.cShoppingCartFormBean).each(function(){
+		   jQuery19(this).attr("checked",false);
+	  });
+	  jQuery19("input[type=radio]",document.cShoppingCartFormBean).each(function(){
+		   jQuery19(this).attr("checked",'');
+	  });
+	  jQuery19("select",document.cShoppingCartFormBean).each(function(){
+		   this.selectedIndex = -1;
+	  });
+}
+
+jQuery19(document).ready(function(){
+
+});
+
+
+
+
+
+	//var stripe = Stripe('pk_test_0C1U3MRc1cDQuSguE0uTsAKL');
+	var stripe = Stripe('pk_live_h9tXW1ytFQoDVxNUF2GV5PP8');
+
+	//create stripe element
+	var elements = stripe.elements();
+
+	var card = elements.create('card',{
+		  hidePostalCode:true,
+	});
+	jQuery19(function(){
+
+			jQuery19('#stripeCard').show();
+			card.mount('#card-element');
+
+		  //Elements includes real-time input validation that helps facilitate your usersâ checkout flow, increasing conversion
+		  card.addEventListener('change', function(event) {
+			  var displayError = document.getElementById('card-errors');
+			  if (event.error) {
+			    displayError.textContent = event.error.message;
+			    jQuery19('#stripeToken').val('');
+
+			  } else {
+				jQuery19('input[name="submitButton"]').removeAttr('disabled');
+			    displayError.textContent = '';
+			  }
+			});
+
+        fm= jQuery19('#_creditCardPaymentSection form');
+        if(fm.length==0){
+            fm=jQuery19('form[name$="ShoppingCartFormBean"]:last');
+        }
+		  //Create a token when the form is submitted.
+        fm.removeAttr('onsubmit').submit(function(e){
+
+            if(("undefined" != typeof(validateDonationAmount) && typeof(validateDonationAmount) == "function" && !validateDonationAmount()) || !validateFields(jQuery19(this)[0])){
+                  e.preventDefault();
+                  return;
+              }
+
+            var mar=jQuery19('input[name="membershipSpec.autoRenewal"]');
+            if(mar.length>0&&!mar.prop('checked')){
+                fm.submit();
+            }
+
+              var payType = document.querySelector('input[name="payment-type"][value="credit-card"]');
+              if (payType && payType.checked || !payType) {
+                  var alternatePayment3942 = document.querySelector('#alternatePayment');
+                  var echeckhidden3942 = document.querySelector('input[name="echeckhidden"]');
+                  if ((!alternatePayment3942 || !alternatePayment3942.checked) && (!echeckhidden3942 || (echeckhidden3942 && echeckhidden3942.value != 'echeck'))) {
+                      if (jQuery19('#stripeToken').val() == '') {
+                          e.preventDefault();
+                          createToken();
+                      }
+
+                  }
+              }
+
+		  });
+
+	});
+
+	function createToken() {
+		  var name=jQuery19('input[name$=".creditCard.cardHolderName"]').val();
+		  var first_name=jQuery19('input[name$=".creditCard.cardHolderFirstName"]').val();
+		  var last_name=jQuery19('input[name$=".creditCard.cardHolderLastName"]').val();
+		  var address_line1=jQuery19('input[name$=".creditCard.address.street1"]').val();
+		  var address_line2=jQuery19('input[name$=".creditCard.address.street2"]').val();
+		  var address_city=jQuery19('input[name$=".creditCard.address.city"]').val();
+		  var address_state=jQuery19('select[name$=".creditCard.address.state"]').val();
+          var address_province=jQuery19('input[name$=".creditCard.address.province"]').val();
+		  var address_zip=jQuery19('input[name$=".creditCard.address.zip"]').val();
+		  var address_country=jQuery19('select[name$=".creditCard.address.country"]').val();
+
+		  if(!name)
+			  name='';
+		  if(!first_name)
+			  first_name='';
+		  if(!last_name)
+			  last_name='';
+		  if(!address_line1)
+			  address_line1='';
+		  if(!address_line2)
+			  address_line2='';
+		  if(!address_city)
+			  address_city='';
+          if(!address_state) {
+              address_state = address_province;
+          }
+          if(!address_state) {
+              address_state = '';
+          }
+		  if(!address_zip)
+			  address_zip='';
+		  if(!address_country)
+			  address_country='';
+
+		  if(name=='')
+			  name=first_name+' '+last_name;
+
+		  stripe.createToken(card,{
+			  name:name,
+			  address_line1:address_line1,
+			  address_line2:address_line2,
+			  address_city:address_city,
+			  address_state:address_state,
+			  address_zip:address_zip,
+			  address_country:address_country
+		  }).then(function(result) {
+		    if (result.error) {
+		      // Inform the user if there was an error
+		      jQuery19('#card-errors').text(result.error.message);
+		      jQuery19('input[name="submitButton"]').removeAttr('disabled');
+		    } else {
+		      // Send the token to your server
+		      stripeTokenHandler(result.token);
+		    }
+		  });
+	}
+
+	function stripeTokenHandler(token) {
+		  // Insert the token ID into the form so it gets submitted to the server
+
+		  jQuery19('#stripeToken').val(token.id);
+		  // Submit the form
+          fm.submit();
+	}
+
+
+
+</script>
+<input type="password" autocomplete="off" style="display:none">
+<input type="hidden" name="skipDuplicateRequestCheck" value="1">
+
+   <div class="neoncrm-content">
+        <div>
+
+
+
+
+
+
+
+	            <label class="neoncrm-field-label ">Name:</label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<input type="text" name="subscriber.name" maxlength="100" size="40" value="" id="subscriber.name" class="neon2Field">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	            <label class="neoncrm-field-label neoncrm-required">Email:</label>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<input type="text" name="subscriber.email1" maxlength="100" size="40" value="" id="subscriber.email1" class="neon2Field">
+   </div>
+   </div>
+<script>
+   //Because of a Chrome auto-fill bug, just disable auto-fill for zipSuffix for now.
+   if(document.getElementById("address.zipSuffix")) document.getElementById("address.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("address2.zipSuffix")) document.getElementById("address2.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("donation.acknowledgeInfo.address.zipSuffix")) document.getElementById("donation.acknowledgeInfo.address.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("donation.matchCompanyInfo.address.zipSuffix")) document.getElementById("donation.matchCompanyInfo.address.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("payment.creditCard.address.zipSuffix")) document.getElementById("payment.creditCard.address.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("recurringDonation.creditCard.address.zipSuffix")) document.getElementById("recurringDonation.creditCard.address.zipSuffix").setAttribute("autocomplete","off");
+   if(document.getElementById("shipping.address.zipSuffix")) document.getElementById("shipping.address.zipSuffix").setAttribute("autocomplete","off");
+   //Also disable auto-fill for Suffix
+   if(document.getElementById("person.suffix")) document.getElementById("person.suffix").setAttribute("autocomplete","off");
+</script>
+
+
+
+<div class="neoncrm-page-title">
+         Please choose your email subscription:
+</div>
+           <script src="https://www.google.com/recaptcha/api.js"></script>
+           <div class="g-recaptcha" data-sitekey="6LdQjgATAAAAAAqTumsTYIK0Ai_6407UFhJo7TR6"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LdQjgATAAAAAAqTumsTYIK0Ai_6407UFhJo7TR6&amp;co=aHR0cHM6Ly93d3cuejJzeXN0ZW1zLmNvbTo0NDM.&amp;hl=en&amp;v=v1528855115741&amp;size=normal&amp;cb=j6h5elqhjat" width="304" height="78" role="presentation" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
+           <input type="hidden" value="1" name="submitType">
+<div class="neoncrm-form-buttons">
+          <input name="submitButton" class="neoncrm-button" type="submit" value="Subscribe">
+</div>
+</form>
 						</div>
 					</div>
 					<div class = "col-lg-4">
